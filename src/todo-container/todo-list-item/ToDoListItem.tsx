@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ListContext } from "../TodoContainer";
 
 interface Props {
   item: string;
-  onDelete: (value: string) => void;
-  onSave: (oldValue: string, newValue: string) => void;
 }
 
-const TodoListItem = ({ item, onDelete, onSave }: Props) => {
+const TodoListItem = ({ item }: Props) => {
+  const [list, setList] = useContext(ListContext);
+
   const [edit, setEdit] = useState<boolean>(false);
   const [value, setValue] = useState<string>(item);
+
+  const onSave = (oldValue: string, newValue: string) => {
+    setList(list.map((item) => (item === oldValue ? newValue : item)));
+  };
+
+  const onDelete = (value: string) => {
+    setList(list.filter((item) => item !== value));
+  };
 
   return (
     <>

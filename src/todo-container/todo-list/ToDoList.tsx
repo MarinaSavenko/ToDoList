@@ -1,21 +1,16 @@
+import { useContext } from "react";
 import TodoListItem from "../todo-list-item/ToDoListItem";
+import { ListContext } from "../TodoContainer";
 
-interface Props {
-  list: string[];
-  onDelete: (value: string) => void;
-  onSave: (oldValue: string, newValue: string) => void;
-}
+interface Props {}
 
-const TodoList = ({ list, onDelete, onSave }: Props) => {
+const TodoList = (props: Props) => {
+  const [list] = useContext(ListContext);
+
   return (
     <div>
       {list.map((item, index) => (
-        <TodoListItem
-          item={item}
-          onDelete={onDelete}
-          onSave={onSave}
-          key={`todoItem${index}`}
-        />
+        <TodoListItem item={item} key={`todoItem${index}`} />
       ))}
     </div>
   );
