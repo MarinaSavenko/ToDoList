@@ -2,6 +2,7 @@ import { useState } from "react";
 import TodoForm from "./todo-form/ToDoForm";
 import TodoList from "./todo-list/ToDoList";
 import { createContext } from "react";
+import { NavLink } from "react-router";
 
 export const ListContext = createContext<any[]>([]);
 
@@ -16,6 +17,7 @@ const TodoContainer = () => {
         }}
       />
       <TodoList />
+      <NavLink to="/123">todoPage</NavLink>
     </ListContext.Provider>
   );
 };
